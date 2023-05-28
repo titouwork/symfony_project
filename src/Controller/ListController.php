@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProgramRepository;
 
-Class ListController extends AbstractController
+class ListController extends AbstractController
 {
     #[Route('/list/', name: 'list_index')]
     public function index(ProgramRepository $programRepository): Response

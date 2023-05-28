@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        
+    <h1>{{ category.name }}</h1>
+    {% for program in programs %}
+
+        <div>
+            <h2>{{ program.id }}. {{ program.title }}</h2>
+            <p>{{ program.synopsis }}</p>
+            <a href="{{ path("program_show", { id: program.id }) }}">Voir la fiche</a>
+        </div>
+
+    {% else %}
+        Aucun film trouvé. <br>
+    {% endfor %}
+
+
+    <a href="{{ path('category_index') }}">
+        Retour à l'accueil
+    </a>
+{% endblock %}

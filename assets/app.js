@@ -6,12 +6,15 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/app.scss';
+require('bootstrap');
 
 // start the Stimulus application
 import './bootstrap';
 
-import logoPath from '../images/clap.png';
+import logoPath from '../assets/images/clap.png';
 
 let html = `<img src="${logoPath}" alt="ACME logo">`;
 

@@ -7,10 +7,14 @@
          <div>
             <h2>{{ loop.index }} / {{ category.name }} </h2>
             <a href="{{ path("category_show", { categoryName: category.name }) }}">Voir la liste des séries</a>
-        </div>
+        </div><br>
     {% else %}
-        Aucune catégorie trouvée.
+        Aucune catégorie trouvée. Vous souhaitez en ajouter: <a href="{{ path('new') }}">Ici</a><br><br>
+        Retour à l'accueil
+    </a>
     {% endfor %}
+    <br><br>
+    Pas assez de catégories ?? Vous souhaitez en ajouter: <a href="{{ path('new') }}"> Ajouter une nouvelle categorie </a> <br><br>
 
 
     <a href="{{ path('accueil_index') }}">

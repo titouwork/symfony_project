@@ -15,17 +15,22 @@ class Category
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: 'Ne me laisse pas tout vide')]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'La catégorie saisie {{ value }} est trop longue, elle ne devrait pas dépasser {{ limit }} caractères',
+    )]
+    private $name;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Program::class)]
     private $programs;
 
     public function __construct()
     {
-    $this->programs = new ArrayCollection();
+        $this->programs = new ArrayCollection();
     }
-    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,27 +49,27 @@ class Category
     }
     public function getPrograms(): Collection
     {
-    return $this->programs;
+        return $this->programs;
     }
     public function addProgram(Program $program): self
     {
-    if (!$this->programs->contains($program)) {
-        $this->programs->add($program);
-        $program->setCategory($this);
-    }
+        if (!$this->programs->contains($program)) {
+            $this->programs->add($program);
+            $program->setCategory($this);
+        }
 
-    return $this;
+        return $this;
     }
 
     public function removeProgram(Program $program): self
     {
-    if ($this->programs->removeElement($program)) {
-        // set the owning side to null (unless already changed)
-        if ($program->getCategory() === $this) {
-            $program->setCategory(null);
+        if ($this->programs->removeElement($program)) {
+            // set the owning side to null (unless already changed)
+            if ($program->getCategory() === $this) {
+                $program->setCategory(null);
+            }
         }
-    }
 
-    return $this;
+        return $this;
     }
 }

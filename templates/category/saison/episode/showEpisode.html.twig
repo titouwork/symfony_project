@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block body %}
-
-	
+	<h1>{{ program.title }} </h1>
+	<h2>Saison {{ season.number }} </h2>
 	<h2>Voir l'épisode: {{ episode.number}}. {{ episode.title}}</h2>
 	<p> {{ episode.synopsis }}</p>
 
-	<a href="{{ path('season_show', { programId: program.id, seasonId:season.id }) }}" class="card-link">
+	<a href="{{ path('season_show', { program: program.id, season:season.id }) }}" class="card-link">
 	Voir la saison</a>
 </a>{% endblock %}

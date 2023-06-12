@@ -20,13 +20,14 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
         $programs = $manager->getRepository(Program::class)->findAll();
 
         foreach ($programs as $program) {
+            $referenceIndex = 0;
             for ($i = 0; $i < 5; $i++) {
                 $season = new Season();
                 $season->setNumber($faker->numberBetween(1, 5));
                 $season->setYear($faker->year());
                 $season->setDescription($faker->paragraphs(3, true));
                 $season->setProgram($program);
-                $this->setReference('saison_' . $i++, $season);
+                $this->setReference('saison_' . $referenceIndex++, $season);
 
                 $manager->persist($season);
             }

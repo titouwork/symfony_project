@@ -5,12 +5,17 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ProgramRepository;
+
 
 class DefaultController extends AbstractController
 {
     #[Route('/', name: 'accueil_index')]
-    public function index(): Response
+    public function index(ProgramRepository $programRepository): Response
     {
-        return $this->render('/default/accueil.html.twig');
+        $programs = $programRepository->findAll();
+        return $this->render('/default/accueil.html.twig', [
+            'programs' => $programs,
+        ]);
     }
 }
